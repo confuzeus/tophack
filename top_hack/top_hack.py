@@ -25,7 +25,10 @@ class TopHack:
 
         for node in soup.select(".athing .title .titlelink"):
 
-            found.append({"title": node.string, "url": node["href"]})
+            found.append({
+                "title": node.string,
+                "url": node["href"],
+                "score": 0})
 
         for idx, score in enumerate(soup.select(".score")):
 
