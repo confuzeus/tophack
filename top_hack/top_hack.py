@@ -14,7 +14,9 @@ class TopHack:
 
     def _get_html(self, page=1):
         response = self.session.get(self.url, params={"p": page})
-        return response.text
+        if response.status_code == 200:
+            return response.text
+        raise Exception("Failed to request data.")
 
     def _get_urls(self, text):
         soup = BeautifulSoup(text, "html.parser")
@@ -30,9 +32,10 @@ class TopHack:
             num, _ = score.string.split(" ")
             found[idx]["score"] = int(num)
 
-        for idx, comment_url in enumerate(
-                soup.select(".subtext a:last-child")):
+        for idx, node in enumerate(
+                soup.select(".subtext > a:last-child")):
 
+            comment_url = node['href']
             found[idx]["comment_url"] = self.url + comment_url
 
         self.results += [*found]
