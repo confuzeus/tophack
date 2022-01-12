@@ -2,8 +2,8 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
-class TopHack:
 
+class TopHack:
     def __init__(self, amount=10, min_score=100, sleep=3):
         self.url = "https://news.ycombinator.com"
         self.session = requests.Session()
@@ -13,29 +13,26 @@ class TopHack:
         self.sleep = sleep
 
     def _get_html(self, page=1):
-        response = self.session.get(self.url, params={'p': page})
+        response = self.session.get(self.url, params={"p": page})
         return response.text
 
     def _get_urls(self, text):
-        soup = BeautifulSoup(text, 'html.parser')
+        soup = BeautifulSoup(text, "html.parser")
 
         found = []
 
-        for node in soup.select('.athing .title .titlelink'):
+        for node in soup.select(".athing .title .titlelink"):
 
-            found.append({
-                "title": node.string,
-                "url": node['href']
-            })
+            found.append({"title": node.string, "url": node["href"]})
 
-        for idx, score in enumerate(soup.select('.score')):
+        for idx, score in enumerate(soup.select(".score")):
 
             num, _ = score.string.split(" ")
-            found[idx]['score'] = int(num)
+            found[idx]["score"] = int(num)
 
-        for idx, comment_url in enumerate(soup.select('.subtext a:last-child')):
+        for idx, comment_url in enumerate(soup.select(".subtext a:last-child")):
 
-            found[idx]['comment_url'] = self.url + comment_url
+            found[idx]["comment_url"] = self.url + comment_url
 
         self.results += [*found]
 
@@ -44,7 +41,7 @@ class TopHack:
 
         for result in self.results:
 
-            if result['score'] >= self.min_score:
+            if result["score"] >= self.min_score:
                 filtered.append(result)
 
         self.results = filtered
@@ -52,9 +49,8 @@ class TopHack:
     def _sort(self):
 
         self.results = sorted(
-            self.results,
-            key=lambda result: result['score'],
-            reverse=True)
+            self.results, key=lambda result: result["score"], reverse=True
+        )
 
     def run(self):
 
@@ -67,5 +63,5 @@ class TopHack:
             time.sleep(self.sleep)
         self._filter()
         self._sort()
-        return self.results
 
+        return self.results

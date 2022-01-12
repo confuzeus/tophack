@@ -8,10 +8,10 @@ from top_hack import top_hack
 class TestTopHack(unittest.TestCase):
     def test_get_html(self):
 
-        with patch('top_hack.top_hack.requests') as mock:
+        with patch("top_hack.top_hack.requests") as mock:
 
             mock_response = MagicMock()
-            mock_response.text = ''
+            mock_response.text = ""
 
             mock_session = MagicMock()
             mock_session.get.return_value = mock_response
@@ -58,9 +58,9 @@ class TestTopHack(unittest.TestCase):
 
         result = app.results[0]
 
-        self.assertEqual(result['title'], title)
-        self.assertEqual(result['url'], url)
-        self.assertEqual(result['score'], score)
+        self.assertEqual(result["title"], title)
+        self.assertEqual(result["url"], url)
+        self.assertEqual(result["score"], score)
 
     def test_filter(self):
 
@@ -131,12 +131,11 @@ class TestTopHack(unittest.TestCase):
 
         app._sort()
 
-        self.assertEqual(app.results[0]['title'], 'Duck')
+        self.assertEqual(app.results[0]["title"], "Duck")
 
     def test_run(self):
 
-        with patch('top_hack.top_hack.requests') as mock:
-
+        with patch("top_hack.top_hack.requests") as mock:
 
             html = f"""
     <div class="athing">
@@ -164,9 +163,7 @@ class TestTopHack(unittest.TestCase):
             mock_session.get.return_value = mock_response
 
             mock.Session.return_value = mock_session
-            app = top_hack.TopHack(min_score=100,
-                                   amount=2,
-                                   sleep=0)
+            app = top_hack.TopHack(min_score=100, amount=2, sleep=0)
             results = app.run()
 
             self.assertTrue(len(results), 2)
