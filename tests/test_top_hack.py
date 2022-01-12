@@ -11,6 +11,7 @@ class TestTopHack(unittest.TestCase):
         with patch("top_hack.top_hack.requests") as mock:
 
             mock_response = MagicMock()
+            mock_response.status_code = 200
             mock_response.text = ""
 
             mock_session = MagicMock()
@@ -159,6 +160,7 @@ class TestTopHack(unittest.TestCase):
 
             mock_session = MagicMock()
             mock_response = MagicMock()
+            mock_response.status_code = 200
             mock_response.text = html
             mock_session.get.return_value = mock_response
 
