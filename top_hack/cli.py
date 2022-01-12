@@ -39,10 +39,23 @@ def main():
 
     while True:
         try:
-            chosen = int(input("Which number? <C-c> to quit."))
+            chosen = input("Which number? q to quit. ")
+
+            if chosen == 'q':
+                break
+            else:
+                chosen = int(chosen)
         except Exception:
             continue
-        webbrowser.open(results[chosen]['url'], new=2)
+        action = input("Action: [o/c/q] ")
+
+        if action == "o":
+            url = results[chosen]['url']
+        elif action == 'c':
+            url = results[chosen]['comment_url']
+        else:
+            continue
+        webbrowser.open(url, new=2)
     return 0
 
 
