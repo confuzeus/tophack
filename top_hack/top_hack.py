@@ -4,13 +4,13 @@ from bs4 import BeautifulSoup
 
 class TopHack:
 
-    def __init__(self, amount=10, min_score=100):
+    def __init__(self, amount=10, min_score=100, sleep=3):
         self.url = "https://news.ycombinator.com"
         self.session = requests.Session()
         self.amount = amount
         self.min_score = min_score
         self.results = []
-        self.sleep = 3
+        self.sleep = sleep
 
     def _get_html(self, page=1):
         response = self.session.get(self.url, params={'p': page})
