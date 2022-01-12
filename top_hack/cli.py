@@ -20,9 +20,14 @@ def main():
                         type=int,
                         default=10,
                         help="Amount of results to fetch.")
+    parser.add_argument('-s',
+                        '--sleep',
+                        metavar="S",
+                        default=3,
+                        help="Number of seconds to sleep between requests.")
     args = parser.parse_args()
 
-    app = TopHack(args.amount, args.min_score)
+    app = TopHack(args.amount, args.min_score, args.sleep)
     results = app.run()
 
     presentation = ''
