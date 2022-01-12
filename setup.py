@@ -31,7 +31,7 @@ setup(
     description="Get top links from HN",
     entry_points={
         "console_scripts": [
-            "top_hack=top_hack.cli:main",
+            "tophack=top_hack.cli:main",
         ],
     },
     install_requires=requirements,
@@ -39,7 +39,7 @@ setup(
     long_description=readme + "\n\n" + history,
     include_package_data=True,
     keywords="top_hack",
-    name="top_hack",
+    name="tophack",
     packages=find_packages(include=["top_hack", "top_hack.*"]),
     test_suite="tests",
     tests_require=test_requirements,
