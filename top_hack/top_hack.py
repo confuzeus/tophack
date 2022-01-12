@@ -1,3 +1,4 @@
+from urllib.parse import urljoin
 import time
 import requests
 from bs4 import BeautifulSoup
@@ -39,7 +40,7 @@ class TopHack:
                 soup.select(".subtext > a:last-child")):
 
             comment_url = node['href']
-            found[idx]["comment_url"] = self.url + comment_url
+            found[idx]["comment_url"] = urljoin(self.url, comment_url)
 
         self.results += [*found]
 
