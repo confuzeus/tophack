@@ -49,7 +49,8 @@ class TopHack:
 
         self.results = sorted(
             self.results,
-            key=lambda result: result['score'])
+            key=lambda result: result['score'],
+            reverse=True)
 
     def run(self):
 
