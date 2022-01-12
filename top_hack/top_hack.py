@@ -43,6 +43,7 @@ class TopHack:
             found[idx]["comment_url"] = urljoin(self.url, comment_url)
 
         self.results += [*found]
+        self._filter()
 
     def _filter(self):
         filtered = []
@@ -69,7 +70,6 @@ class TopHack:
             html = self._get_html(page=page)
             self._get_urls(html)
             time.sleep(self.sleep)
-        self._filter()
         self._sort()
 
         return self.results

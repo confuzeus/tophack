@@ -39,7 +39,7 @@ class TestTopHack(unittest.TestCase):
 
         title = "Best search engine"
         url = "https://google.com"
-        score = 1
+        score = 100
         html = f"""
 <div class="athing">
     <div class="title">
@@ -51,7 +51,7 @@ class TestTopHack(unittest.TestCase):
 <span class="score">{score} points</span>
         """
 
-        app = top_hack.TopHack()
+        app = top_hack.TopHack(min_score=100)
 
         app._get_urls(html)
 
