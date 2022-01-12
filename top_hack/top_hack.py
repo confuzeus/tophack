@@ -30,7 +30,8 @@ class TopHack:
             num, _ = score.string.split(" ")
             found[idx]["score"] = int(num)
 
-        for idx, comment_url in enumerate(soup.select(".subtext a:last-child")):
+        for idx, comment_url in enumerate(
+                soup.select(".subtext a:last-child")):
 
             found[idx]["comment_url"] = self.url + comment_url
 
