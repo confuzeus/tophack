@@ -40,7 +40,7 @@ class TopHack:
 
         for result in self.results:
 
-            if result['score'] > self.min_score:
+            if result['score'] >= self.min_score:
                 filtered.append(result)
 
         self.results = filtered
