@@ -57,6 +57,8 @@ def main():
 
         if action == "o":
             url = results[chosen]["url"]
+            if not url.startswith("http"):
+                url = results[chosen]["comment_url"]
         elif action == "c":
             url = results[chosen]["comment_url"]
         else:
