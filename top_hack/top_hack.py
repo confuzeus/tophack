@@ -70,6 +70,8 @@ class TopHack:
             html = self._get_html(page=page)
             self._get_urls(html)
             time.sleep(self.sleep)
+            page += 1
+
         self._sort()
 
         return self.results
