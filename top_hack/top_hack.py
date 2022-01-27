@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 class TopHack:
     def __init__(self, amount=10, min_score=100, sleep=3):
-        self.url = "https://news.ycombinator.com"
+        self.url = "https://news.ycombinator.com/best"
         self.session = requests.Session()
         self.amount = amount
         self.min_score = min_score
